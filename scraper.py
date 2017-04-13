@@ -4,7 +4,7 @@ import urllib
 import shutil
 import requests
 
-csvfolder = './agg'
+csvfolder = './data'
 imagefolder = './images/'
 
 def getUrls(filepath):
