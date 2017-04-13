@@ -14,10 +14,12 @@ def getUrls(filepath):
             #change name to whatever you want it
             name = row[0]
             #make sure url is the correct row, row[1] refers to a specific dataset
-            url = row[1]
+            url = row[40]
+            print url
             #if you want to put them in different folders, add that after 'imagefolder'
-            saveto = imagefolder + '/'
-            downloadPhoto(url, saveto, name)
+            if 'metmuseum' in url:
+                saveto = imagefolder
+                downloadPhoto(url, saveto, name)
 
 
 def downloadPhoto(url, filepath, name):
