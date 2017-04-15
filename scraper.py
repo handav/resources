@@ -3,6 +3,8 @@ import csv
 import urllib
 import shutil
 import requests
+from lxml import html
+
 
 csvfolder = './data'
 imagefolder = './images/'
@@ -28,14 +30,17 @@ def downloadPhoto(url, filepath, name):
         os.makedirs(filepath)
 
     response = requests.get(url, stream=True)
-    filename = filepath + name
-    if not (os.path.exists(filename)):
-        print 'saving '+filename
-        with open(filename, 'wb') as out_file:
-            shutil.copyfileobj(response.raw, out_file)
-        del response
-    else:
-        print filename + ' already exists'
+    print response.text
+    tree = html.fromstring(response.content)
+
+    # filename = filepath + name
+    # if not (os.path.exists(filename)):
+    #     print 'saving '+filename
+    #     with open(filename, 'wb') as out_file:
+    #         shutil.copyfileobj(response.raw, out_file)
+    #     del response
+    # else:
+    #     print filename + ' already exists'
 
 
 for filename in os.listdir(csvfolder):
